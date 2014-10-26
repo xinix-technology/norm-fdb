@@ -1,6 +1,6 @@
 {
-    "name": "xinix-technology/bono-arch",
-    "description": "Bono Archetype",
+    "name": "reekoheek/norm-fdb",
+    "description": "Norm File Database Driver",
     "license": "MIT",
     "authors": [
         {
@@ -10,14 +10,11 @@
     ],
     "require": {
         "xinix-technology/bono": "~0.3.0",
-        "xinix-technology/norm": "~0.3.0",
-        "xinix-technology/migrate": "~0.1.0",
-        "reekoheek/bono-auth": "~0.1.6"
+        "xinix-technology/norm": "~0.3.0"
     },
     "autoload": {
         "psr-0": {
-            "ROH\\FDB": "src/",
-            "Bono": "/home/jafar/workspaces/php/lib/bono/src/"
+            "ROH\\FDB": "src/"
         }
     }
 }
