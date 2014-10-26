@@ -1,0 +1,6 @@
+/vendor
+/composer.phar
+/project.sublime-*
+/node_modules
+/data
+
