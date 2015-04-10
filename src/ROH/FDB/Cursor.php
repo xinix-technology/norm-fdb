@@ -71,4 +71,9 @@ class Cursor extends NormCursor
         reset($this->buffer);
         $this->next();
     }
+
+    public function distinct()
+    {
+        throw new \Exception('Unimplemented yet!');
+    }
 }
