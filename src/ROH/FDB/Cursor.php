@@ -72,7 +72,7 @@ class Cursor extends NormCursor
         $this->next();
     }
 
-    public function distinct()
+    public function distinct($key)
     {
         throw new \Exception('Unimplemented yet!');
     }
