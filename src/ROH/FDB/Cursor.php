@@ -17,7 +17,11 @@ class Cursor extends NormCursor
     public function count($foundOnly = false)
     {
         if ($foundOnly) {
-            throw new \Exception('Unimplemented '.__METHOD__);
+
+            $this->rewind();
+            return $this->count;
+
+            // throw new \Exception('Unimplemented '.__METHOD__);
         } else {
             $this->rewind();
             return $this->count;
