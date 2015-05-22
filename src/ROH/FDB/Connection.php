@@ -134,24 +134,37 @@ class Connection extends NormConnection
 
     public function isValidToFetch($row, $criteria) {
         foreach ($criteria as $key => $value) {
-            $exploded = explode('!', $key);
-            $key = $exploded[0];
-            $operator = isset($exploded[1]) ? $exploded[1] : '=';
-
-            if ($key === '$id') {
-                $key = 'id';
-            } elseif ($key[0] === '$') {
-                $key = '_'.substr($key, 1);
-            }
-
-            switch($operator) {
-                case '=':
-                    if ($value != $row[$key]) {
-                        return false;
+            if ($key === '!or') {
+                $valid = false;
+                foreach ($value as $subCriteria) {
+                    if ($this->isValidToFetch($row, $subCriteria)) {
+                        $valid = true;
+                        break;
                     }
-                    break;
-                default:
-                    throw new \Exception("Operator '$operator' is not implemented yet!");
+                }
+                if (!$valid) {
+                    return false;
+                }
+            } else {
+                $exploded = explode('!', $key);
+                $key = $exploded[0];
+                $operator = isset($exploded[1]) ? $exploded[1] : '=';
+
+                if ($key === '$id') {
+                    $key = 'id';
+                } elseif ($key[0] === '$') {
+                    $key = '_'.substr($key, 1);
+                }
+
+                switch($operator) {
+                    case '=':
+                        if ($value != $row[$key]) {
+                            return false;
+                        }
+                        break;
+                    default:
+                        throw new \Exception("Operator '$operator' is not implemented yet!");
+                }
             }
         }
 
